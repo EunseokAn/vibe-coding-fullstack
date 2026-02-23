@@ -19,4 +19,14 @@ public class PostService {
         postRepository.incrementViews(no);
         return postRepository.findByNo(no);
     }
+
+    public void createPost(String title, String content) {
+        Post post = new Post();
+        post.setTitle(title);
+        post.setContent(content);
+        post.setCreatedAt(java.time.LocalDateTime.now());
+        post.setUpdatedAt(null);
+        post.setViews(0);
+        postRepository.save(post);
+    }
 }

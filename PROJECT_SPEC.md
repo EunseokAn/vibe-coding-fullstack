@@ -24,12 +24,12 @@
 - **설정 파일**: `src/main/resources/application.yml` (YAML 사용)
 - **애플리케이션 이름**: `vibeapp`
 
-## 4. 구현된 기능
-### REST API 엔드포인트
-- **엔드포인트**: `/api/hello`
-- **HTTP Method**: `GET`
-- **기능**: `"Hello, Vibe!"` 문자열 반환
-- **구현 위치**: `VibeApp.java` (Controller 통합)
+### 구현된 기능
+#### 게시글 관리
+- **목록 조회**: `/posts` (Post List Page)
+- **상세 조회**: `/posts/{no}` (Post Detail Page)
+- **공개 폼**: `/posts/new` (Creation Form)
+- **등록 처리**: `/posts/add` (POST submission, redirects to list)
 
 ### 뷰 템플릿 (Thymeleaf & Bootstrap)
 - **메인 페이지**: `/` (Home Page)

@@ -23,7 +23,7 @@
     <div class="container">
         <div class="bg-white p-5 rounded shadow">
             <h2 class="mb-4">새 게시글 작성</h2>
-            <form onsubmit="alert('새 게시글 등록'); return false;">
+            <form action="/posts/add" method="post">
                 <div class="mb-3">
                     <label for="title" class="form-label">제목</label>
                     <input type="text" class="form-label" id="title" name="title" required placeholder="제목을 입력하세요">
