@@ -49,6 +49,7 @@
 
             <div class="d-flex gap-2 border-top pt-4">
                 <a href="/posts" class="btn btn-secondary">목록</a>
+                <a th:href="@{/posts/{no}/edit(no=${post.no})}" class="btn btn-warning">수정</a>
             </div>
         </div>
     </div>

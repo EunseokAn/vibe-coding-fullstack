@@ -40,4 +40,11 @@ public class PostController {
         postService.createPost(title, content);
         return "redirect:/posts";
     }
+
+    @GetMapping("/posts/{no}/edit")
+    public String getEditPostForm(@PathVariable("no") Long no, Model model) {
+        Post post = postService.getPost(no);
+        model.addAttribute("post", post);
+        return "post_edit_form";
+    }
 }

@@ -28,6 +28,7 @@
 #### 게시글 관리
 - **목록 조회**: `/posts` (Post List Page)
 - **상세 조회**: `/posts/{no}` (Post Detail Page)
+- **수정 폼**: `/posts/{no}/edit` (Post Edit Form Page)
 - **공개 폼**: `/posts/new` (Creation Form)
 - **등록 처리**: `/posts/add` (POST submission, redirects to list)
 
@@ -36,7 +37,7 @@
 - **게시글 목록**: `/posts` (Post List Page)
 - **게시글 상세**: `/posts/{no}` (Post Detail Page)
 - **게시글 작성**: `/posts/new` (New Post Form Page)
-- **템플릿 위치**: `src/main/resources/templates/` (`home.html`, `posts.html`, `post_detail.html`, `post_new_form.html`)
+- **템플릿 위치**: `src/main/resources/templates/` (`home.html`, `posts.html`, `post_detail.html`, `post_new_form.html`, `post_edit_form.html`)
 - **컨트롤러**: `HomeController.java`, `PostController.java`
 - **프론트엔드**: Bootstrap 5 (CDN)를 사용하여 반응형 UI 디자인 적용
 
@@ -63,7 +64,8 @@ vibeapp/
 │   │       │   ├── home.html
 │   │       │   ├── posts.html
 │   │       │   ├── post_detail.html
-│   │       │   └── post_new_form.html
+│   │       │   ├── post_new_form.html
+│   │       │   └── post_edit_form.html
 │   │       └── application.yml
 ├── build.gradle
 ├── settings.gradle
