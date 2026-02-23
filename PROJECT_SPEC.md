@@ -35,7 +35,8 @@
 - **메인 페이지**: `/` (Home Page)
 - **게시글 목록**: `/posts` (Post List Page)
 - **게시글 상세**: `/posts/{no}` (Post Detail Page)
-- **템플릿 위치**: `src/main/resources/templates/` (`home.html`, `posts.html`, `post_detail.html`)
+- **게시글 작성**: `/posts/new` (New Post Form Page)
+- **템플릿 위치**: `src/main/resources/templates/` (`home.html`, `posts.html`, `post_detail.html`, `post_new_form.html`)
 - **컨트롤러**: `HomeController.java`, `PostController.java`
 - **프론트엔드**: Bootstrap 5 (CDN)를 사용하여 반응형 UI 디자인 적용
 
@@ -61,7 +62,8 @@ vibeapp/
 │   │       ├── templates/
 │   │       │   ├── home.html
 │   │       │   ├── posts.html
-│   │       │   └── post_detail.html
+│   │       │   ├── post_detail.html
+│   │       │   └── post_new_form.html
 │   │       └── application.yml
 ├── build.gradle
 ├── settings.gradle
