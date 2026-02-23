@@ -29,6 +29,7 @@
 - **목록 조회**: `/posts` (Post List Page)
 - **상세 조회**: `/posts/{no}` (Post Detail Page)
 - **수정 폼**: `/posts/{no}/edit` (Post Edit Form Page)
+- **수정 처리**: `/posts/{no}/save` (POST submission, redirects to detail)
 - **공개 폼**: `/posts/new` (Creation Form)
 - **등록 처리**: `/posts/add` (POST submission, redirects to list)
 

@@ -23,7 +23,7 @@
     <div class="container">
         <div class="bg-white p-5 rounded shadow">
             <h2 class="mb-4">게시글 수정</h2>
-            <form onsubmit="alert('게시글 수정'); return false;">
+            <form th:action="@{/posts/{no}/save(no=${post.no})}" method="post">
                 <div class="mb-3 row">
                     <label for="no" class="col-sm-2 col-form-label">번호</label>
                     <div class="col-sm-10">
