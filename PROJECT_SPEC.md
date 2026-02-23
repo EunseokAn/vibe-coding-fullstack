@@ -18,6 +18,7 @@
   - `org.springframework.boot:spring-boot-starter-web`: REST API 및 웹 환경 지원
   - `org.springframework.boot:spring-boot-starter-thymeleaf`: Thymeleaf 뷰 템플릿 엔진 지원
   - `io.spring.dependency-management`: 의존성 버전 관리
+- **Frontend Framework**: Bootstrap 5 (CDN 방식)
 
 ## 3. 설정 및 구성 (Configuration)
 - **설정 파일**: `src/main/resources/application.yml` (YAML 사용)
@@ -30,10 +31,18 @@
 - **기능**: `"Hello, Vibe!"` 문자열 반환
 - **구현 위치**: `VibeApp.java` (Controller 통합)
 
-### 뷰 템플릿 (Thymeleaf)
+### 뷰 템플릿 (Thymeleaf & Bootstrap)
 - **메인 페이지**: `/` (Home Page)
-- **템플릿 위치**: `src/main/resources/templates/home.html`
-- **컨트롤러**: `HomeController.java`
+- **게시글 목록**: `/posts` (Post List Page)
+- **게시글 상세**: `/posts/{no}` (Post Detail Page)
+- **템플릿 위치**: `src/main/resources/templates/` (`home.html`, `posts.html`, `post_detail.html`)
+- **컨트롤러**: `HomeController.java`, `PostController.java`
+- **프론트엔드**: Bootstrap 5 (CDN)를 사용하여 반응형 UI 디자인 적용
+
+### 도메인 및 서비스
+- **엔티티**: `Post` (게시글 정보 관리를 위한 POJO)
+- **리포지토리**: `PostRepository` (ArrayList 기반 인메모리 저장소)
+- **서비스**: `PostService` (게시글 비즈니스 로직 처리)
 
 ## 5. 프로젝트 구조
 ```text
@@ -43,12 +52,23 @@ vibeapp/
 │   │   ├── java/
 │   │   │   └── com/example/vibeapp/
 │   │   │       ├── VibeApp.java
-│   │   │       └── HomeController.java
+│   │   │       ├── HomeController.java
+│   │   │       ├── PostController.java
+│   │   │       ├── PostService.java
+│   │   │       ├── PostRepository.java
+│   │   │       └── Post.java
 │   │   └── resources/
 │   │       ├── templates/
-│   │       │   └── home.html
+│   │       │   ├── home.html
+│   │       │   ├── posts.html
+│   │       │   └── post_detail.html
 │   │       └── application.yml
 ├── build.gradle
 ├── settings.gradle
+├── .gitignore
 └── PROJECT_SPEC.md
 ```
+
+## 6. 기타 설정
+- **버전 관리**: Git 사용 중
+- **무시 목록**: `.gitignore`를 통해 `.gradle/`, `build/`, `bin/`, `*.log` 등 빌드 및 실행 관련 파일 제외 설정 완료
