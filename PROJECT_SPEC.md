@@ -17,6 +17,7 @@
 - **Dependencies**:
   - `org.springframework.boot:spring-boot-starter-web`: REST API 및 웹 환경 지원
   - `org.springframework.boot:spring-boot-starter-thymeleaf`: Thymeleaf 뷰 템플릿 엔진 지원
+  - `org.springframework.boot:spring-boot-starter-validation`: Bean Validation 지원
   - `io.spring.dependency-management`: 의존성 버전 관리
 - **Frontend Framework**: Bootstrap 5 (CDN 방식)
 
@@ -62,6 +63,8 @@
 - [x] **뷰 템플릿 구조화** (기능별 하위 디렉토리 분리) 완료
 - [x] **명명 규칙 최적화**: 모든 식별자를 `id`로 통일하고 Spring Data 스타일의 메서드 명명 규칙 적용
 - [x] **미사용 코드 정리**: 불필요한 메서드 및 클래스 정리 완료
+- [x] **DTO 패턴 도입**: 계층 간 데이터 전송을 위한 DTO(`Create`, `Update`, `Response`, `List`) 적용
+- [x] **Bean Validation**: 제목 글자 수 제한 등 입력 데이터 검증 및 에러 메시지 처리 구현
 
 ## 5. 프로젝트 구조
 ```text
