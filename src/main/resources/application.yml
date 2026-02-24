@@ -1,3 +1,5 @@
 spring:
   application:
     name: vibeapp
+  thymeleaf:
+    cache: false
