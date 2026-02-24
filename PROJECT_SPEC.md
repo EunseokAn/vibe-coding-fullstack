@@ -55,11 +55,13 @@ vibeapp/
 │   │   ├── java/
 │   │   │   └── com/example/vibeapp/
 │   │   │       ├── VibeApp.java
-│   │   │       ├── HomeController.java
-│   │   │       ├── PostController.java
-│   │   │       ├── PostService.java
-│   │   │       ├── PostRepository.java
-│   │   │       └── Post.java
+│   │   │       ├── home/
+│   │   │       │   └── HomeController.java
+│   │   │       └── post/
+│   │   │           ├── Post.java
+│   │   │           ├── PostController.java
+│   │   │           ├── PostRepository.java
+│   │   │           └── PostService.java
 │   │   └── resources/
 │   │       ├── templates/
 │   │       │   ├── home.html
