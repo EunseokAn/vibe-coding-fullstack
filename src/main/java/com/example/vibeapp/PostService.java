@@ -15,6 +15,16 @@ public class PostService {
         return postRepository.findAll();
     }
 
+    public List<Post> getPostsPaged(int page, int size) {
+        int offset = (page - 1) * size;
+        return postRepository.findPaged(offset, size);
+    }
+
+    public int getTotalPages(int size) {
+        long totalElements = postRepository.count();
+        return (int) Math.ceil((double) totalElements / size);
+    }
+
     public Post getPost(Long no) {
         postRepository.incrementViews(no);
         return postRepository.findByNo(no);

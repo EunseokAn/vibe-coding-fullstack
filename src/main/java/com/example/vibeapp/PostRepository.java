@@ -26,6 +26,19 @@ public class PostRepository {
         return new ArrayList<>(posts);
     }
 
+    public List<Post> findPaged(int offset, int limit) {
+        int total = posts.size();
+        if (offset >= total) {
+            return new ArrayList<>();
+        }
+        int toIndex = Math.min(offset + limit, total);
+        return new ArrayList<>(posts.subList(offset, toIndex));
+    }
+
+    public long count() {
+        return posts.size();
+    }
+
     public Post findByNo(Long no) {
         return posts.stream()
                 .filter(p -> p.getNo().equals(no))

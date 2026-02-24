@@ -47,6 +47,27 @@
                     </tr>
                 </tbody>
             </table>
+            <div th:if="${totalPages > 1}" class="d-flex justify-content-center mt-4">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
+                            <a class="page-link" th:href="@{/posts(page=${currentPage - 1})}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item" th:each="pageNum : ${#numbers.sequence(1, totalPages)}"
+                            th:classappend="${pageNum == currentPage} ? 'active'">
+                            <a class="page-link" th:href="@{/posts(page=${pageNum})}" th:text="${pageNum}">1</a>
+                        </li>
+                        <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled'">
+                            <a class="page-link" th:href="@{/posts(page=${currentPage + 1})}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
             <div class="mt-4">
                 <a href="/" class="btn btn-secondary">홈으로</a>
             </div>
