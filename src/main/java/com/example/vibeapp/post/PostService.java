@@ -1,6 +1,7 @@
 package com.example.vibeapp.post;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import com.example.vibeapp.post.dto.PostCreateDto;
 import com.example.vibeapp.post.dto.PostListDto;
 import com.example.vibeapp.post.dto.PostResponseDto;
@@ -12,9 +13,11 @@ import java.util.stream.Collectors;
 @Service
 public class PostService {
     private final PostRepository postRepository;
+    private final PostTagRepository postTagRepository;
 
-    public PostService(PostRepository postRepository) {
+    public PostService(PostRepository postRepository, PostTagRepository postTagRepository) {
         this.postRepository = postRepository;
+        this.postTagRepository = postTagRepository;
     }
 
     public List<PostListDto> findAllPaged(int page, int size) {
@@ -29,23 +32,56 @@ public class PostService {
         return (int) Math.ceil((double) totalElements / size);
     }
 
-    public PostResponseDto findById(Long id) {
-        postRepository.incrementViews(id);
+    public PostResponseDto getPostForEdit(Long id) {
         Post post = postRepository.findById(id);
-        return PostResponseDto.from(post);
+        String tags = getTagsAsString(id);
+        return PostResponseDto.from(post, tags);
     }
 
+    public PostResponseDto viewPostById(Long id) {
+        postRepository.incrementViews(id);
+        Post post = postRepository.findById(id);
+        String tags = getTagsAsString(id);
+        return PostResponseDto.from(post, tags);
+    }
+
+    private String getTagsAsString(Long postNo) {
+        return postTagRepository.findByPostNo(postNo).stream()
+                .map(PostTag::getTagName)
+                .collect(Collectors.joining(", "));
+    }
+
+    @Transactional
     public void save(PostCreateDto createDto) {
         Post post = createDto.toEntity();
         postRepository.save(post);
+        saveTags(post.getId(), createDto.tags());
     }
 
+    private void saveTags(Long postNo, String tagsString) {
+        if (tagsString == null || tagsString.isBlank()) {
+            return;
+        }
+        String[] tags = tagsString.split(",");
+        for (String tagName : tags) {
+            String trimmedTag = tagName.trim();
+            if (!trimmedTag.isEmpty()) {
+                postTagRepository.insert(new PostTag(null, postNo, trimmedTag));
+            }
+        }
+    }
+
+    @Transactional
     public void updatePost(Long id, PostUpdateDto updateDto) {
         Post post = postRepository.findById(id);
         if (post != null) {
-            post.setTitle(updateDto.getTitle());
-            post.setContent(updateDto.getContent());
+            post.setTitle(updateDto.title());
+            post.setContent(updateDto.content());
             post.setUpdatedAt(LocalDateTime.now());
+            postRepository.save(post);
+
+            postTagRepository.deleteByPostNo(id);
+            saveTags(id, updateDto.tags());
         }
     }
 

@@ -36,6 +36,11 @@
                     <label for="content" class="form-label">내용</label>
                     <textarea class="form-control" th:field="*{content}" rows="10" placeholder="내용을 입력하세요"></textarea>
                 </div>
+                <div class="mb-3">
+                    <label for="tags" class="form-label">태그</label>
+                    <input type="text" class="form-control" th:field="*{tags}"
+                        placeholder="태그를 쉼표(,)로 구분하여 입력하세요 (예: java, spring)">
+                </div>
                 <div class="d-flex gap-2">
                     <button type="submit" class="btn btn-primary">등록</button>
                     <a href="/posts" class="btn btn-secondary">취소</a>

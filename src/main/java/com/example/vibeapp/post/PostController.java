@@ -34,14 +34,14 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String postDetail(@PathVariable("id") Long id, Model model) {
-        PostResponseDto post = postService.findById(id);
+        PostResponseDto post = postService.viewPostById(id);
         model.addAttribute("post", post);
         return "post/post_detail";
     }
 
     @GetMapping("/posts/new")
     public String newPostForm(Model model) {
-        model.addAttribute("postCreateDto", new PostCreateDto());
+        model.addAttribute("postCreateDto", new PostCreateDto(null, null, null));
         return "post/post_new_form";
     }
 
@@ -57,9 +57,9 @@ public class PostController {
 
     @GetMapping("/posts/{id}/edit")
     public String editPostForm(@PathVariable("id") Long id, Model model) {
-        PostResponseDto post = postService.findById(id);
+        PostResponseDto post = postService.getPostForEdit(id);
         model.addAttribute("post", post);
-        model.addAttribute("postUpdateDto", new PostUpdateDto(post.getTitle(), post.getContent()));
+        model.addAttribute("postUpdateDto", new PostUpdateDto(post.title(), post.content(), post.tags()));
         return "post/post_edit_form";
     }
 
@@ -69,7 +69,7 @@ public class PostController {
             BindingResult bindingResult,
             Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("post", postService.findById(id));
+            model.addAttribute("post", postService.getPostForEdit(id));
             return "post/post_edit_form";
         }
         postService.updatePost(id, postUpdateDto);

@@ -22,9 +22,13 @@
 
     <div class="container">
         <div class="bg-white p-5 rounded shadow">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 th:text="${post.title}">게시글 제목</h2>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h2 th:text="${post.title}" class="mb-0">게시글 제목</h2>
                 <span class="badge bg-primary fs-6">No. <span th:text="${post.id}">1</span></span>
+            </div>
+            <div class="mb-4" th:if="${post.tags != null and !post.tags.isEmpty()}">
+                <span th:each="tag : ${#strings.arraySplit(post.tags, ',')}"
+                    class="badge rounded-pill bg-info text-dark me-1" th:text="${#strings.trim(tag)}">Tag</span>
             </div>
 
             <div class="mb-4 border-bottom pb-3">

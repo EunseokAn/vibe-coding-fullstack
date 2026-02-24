@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.vibeapp.post.PostMapper">
+
+    <resultMap id="PostMap" type="com.example.vibeapp.post.Post">
+        <id property="id" column="NO" />
+        <result property="title" column="TITLE" />
+        <result property="content" column="CONTENT" />
+        <result property="createdAt" column="CREATED_AT" />
+        <result property="updatedAt" column="UPDATED_AT" />
+        <result property="views" column="VIEWS" />
+    </resultMap>
+
+    <select id="findPaged" resultMap="PostMap">
+        SELECT * FROM POSTS
+        ORDER BY CREATED_AT DESC
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT COUNT(*) FROM POSTS
+    </select>
+
+    <select id="findById" resultMap="PostMap">
+        SELECT * FROM POSTS WHERE NO = #{id}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="NO">
+        INSERT INTO POSTS (TITLE, CONTENT, CREATED_AT, UPDATED_AT, VIEWS)
+        VALUES (#{title}, #{content}, #{createdAt}, #{updatedAt}, #{views})
+    </insert>
+
+    <update id="update">
+        UPDATE POSTS
+        SET TITLE = #{title},
+            CONTENT = #{content},
+            UPDATED_AT = #{updatedAt}
+        WHERE NO = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM POSTS WHERE NO = #{id}
+    </delete>
+
+    <update id="incrementViews">
+        UPDATE POSTS
+        SET VIEWS = VIEWS + 1
+        WHERE NO = #{id}
+    </update>
+
+</mapper>
