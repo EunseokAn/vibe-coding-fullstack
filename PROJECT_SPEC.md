@@ -36,7 +36,7 @@
 ### 뷰 템플릿 (Thymeleaf & Bootstrap)
 - **메인 페이지**: `/` (Home Page)
 - **게시글 목록**: `/posts` (Post List Page)
-- **게시글 상세**: `/posts/{no}` (Post Detail Page)
+- **게시글 상세**: `/posts/{id}` (Post Detail Page)
 - **게시글 작성**: `/posts/new` (New Post Form Page)
 - **템플릿 위치**: `src/main/resources/templates/`
   - `home/home.html`
@@ -48,6 +48,20 @@
 - **엔티티**: `Post` (게시글 정보 관리를 위한 POJO - `id`, `title`, `content` 등)
 - **리포지토리**: `PostRepository` (ArrayList 기반 인메모리 저장소)
 - **서비스**: `PostService` (게시글 비즈니스 로직 처리)
+
+## 4. 현재 진행 상태 (Current Status)
+현재 프로젝트는 기본적인 게시판 기능을 모두 갖추었으며, 다음과 같은 최적화 및 안정화 작업이 완료되었습니다.
+
+### 완료된 주요 기능 (Features)
+- [x] 게시글 **CRUD** (목록, 상세, 등록, 수정, 삭제) 처리 완료
+- [x] 게시글 **페이징 처리** (페이지당 5개 게시물) 구현 완료
+- [x] **부트스트랩 5** 기반의 반응형 레이아웃 및 UI 적용
+
+### 아키텍처 및 품질 개선 (Refactoring)
+- [x] **기능 기반 패키지 구조** (`home`, `post`) 도입으로 확장성 확보
+- [x] **뷰 템플릿 구조화** (기능별 하위 디렉토리 분리) 완료
+- [x] **명명 규칙 최적화**: 모든 식별자를 `id`로 통일하고 Spring Data 스타일의 메서드 명명 규칙 적용
+- [x] **미사용 코드 정리**: 불필요한 메서드 및 클래스 정리 완료
 
 ## 5. 프로젝트 구조
 ```text
