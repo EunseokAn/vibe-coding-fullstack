@@ -11,13 +11,26 @@
 </head>
 
 <body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">VibeApp</a>
+            <div class="navbar-nav">
+                <a class="nav-link active" href="/">Home</a>
+                <a class="nav-link" href="/posts">Posts</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-md-8 text-center bg-white p-5 rounded shadow">
                 <h1 class="display-4 text-primary mb-4" th:text="${message}">Hello!</h1>
                 <p class="lead">Bootstrap 5가 적용된 VibeApp 홈 페이지입니다.</p>
                 <hr class="my-4">
-                <a href="/api/hello" class="btn btn-primary btn-lg">REST API 호출 확인</a>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="/posts" class="btn btn-primary btn-lg px-4 gap-3">게시판으로 이동</a>
+                    <a href="/api/hello" class="btn btn-outline-secondary btn-lg px-4">REST API 호출 확인</a>
+                </div>
             </div>
         </div>
     </div>
