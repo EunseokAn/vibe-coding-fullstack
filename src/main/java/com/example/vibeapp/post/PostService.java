@@ -1,6 +1,7 @@
 package com.example.vibeapp.post;
 
 import org.springframework.stereotype.Service;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -11,11 +12,7 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    public List<Post> getAllPosts() {
-        return postRepository.findAll();
-    }
-
-    public List<Post> getPostsPaged(int page, int size) {
+    public List<Post> findAllPaged(int page, int size) {
         int offset = (page - 1) * size;
         return postRepository.findPaged(offset, size);
     }
@@ -25,31 +22,31 @@ public class PostService {
         return (int) Math.ceil((double) totalElements / size);
     }
 
-    public Post getPost(Long no) {
-        postRepository.incrementViews(no);
-        return postRepository.findByNo(no);
+    public Post findById(Long id) {
+        postRepository.incrementViews(id);
+        return postRepository.findById(id);
     }
 
-    public void createPost(String title, String content) {
+    public void save(String title, String content) {
         Post post = new Post();
         post.setTitle(title);
         post.setContent(content);
-        post.setCreatedAt(java.time.LocalDateTime.now());
+        post.setCreatedAt(LocalDateTime.now());
         post.setUpdatedAt(null);
         post.setViews(0);
         postRepository.save(post);
     }
 
-    public void updatePost(Long no, String title, String content) {
-        Post post = postRepository.findByNo(no);
+    public void updatePost(Long id, String title, String content) {
+        Post post = postRepository.findById(id);
         if (post != null) {
             post.setTitle(title);
             post.setContent(content);
-            post.setUpdatedAt(java.time.LocalDateTime.now());
+            post.setUpdatedAt(LocalDateTime.now());
         }
     }
 
-    public void deletePost(Long no) {
-        postRepository.deleteByNo(no);
+    public void deletePost(Long id) {
+        postRepository.deleteById(id);
     }
 }

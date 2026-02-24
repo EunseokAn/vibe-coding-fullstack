@@ -22,10 +22,6 @@ public class PostRepository {
         }
     }
 
-    public List<Post> findAll() {
-        return new ArrayList<>(posts);
-    }
-
     public List<Post> findPaged(int offset, int limit) {
         int total = posts.size();
         if (offset >= total) {
@@ -39,15 +35,15 @@ public class PostRepository {
         return posts.size();
     }
 
-    public Post findByNo(Long no) {
+    public Post findById(Long id) {
         return posts.stream()
-                .filter(p -> p.getNo().equals(no))
+                .filter(p -> p.getId().equals(id))
                 .findFirst()
                 .orElse(null);
     }
 
-    public void incrementViews(Long no) {
-        Post post = findByNo(no);
+    public void incrementViews(Long id) {
+        Post post = findById(id);
         if (post != null) {
             post.setViews(post.getViews() + 1);
         }
@@ -55,14 +51,14 @@ public class PostRepository {
 
     public void save(Post post) {
         long nextId = posts.stream()
-                .mapToLong(Post::getNo)
+                .mapToLong(Post::getId)
                 .max()
                 .orElse(0L) + 1;
-        post.setNo(nextId);
+        post.setId(nextId);
         posts.add(post);
     }
 
-    public void deleteByNo(Long no) {
-        posts.removeIf(p -> p.getNo().equals(no));
+    public void deleteById(Long id) {
+        posts.removeIf(p -> p.getId().equals(id));
     }
 }

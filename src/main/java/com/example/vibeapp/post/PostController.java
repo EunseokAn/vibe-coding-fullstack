@@ -19,7 +19,7 @@ public class PostController {
     @GetMapping("/posts")
     public String listPosts(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
         int pageSize = 5;
-        List<Post> posts = postService.getPostsPaged(page, pageSize);
+        List<Post> posts = postService.findAllPaged(page, pageSize);
         int totalPages = postService.getTotalPages(pageSize);
 
         model.addAttribute("posts", posts);
@@ -28,41 +28,41 @@ public class PostController {
         return "post/posts";
     }
 
-    @GetMapping("/posts/{no}")
-    public String getPostDetail(@PathVariable("no") Long no, Model model) {
-        Post post = postService.getPost(no);
+    @GetMapping("/posts/{id}")
+    public String postDetail(@PathVariable("id") Long id, Model model) {
+        Post post = postService.findById(id);
         model.addAttribute("post", post);
         return "post/post_detail";
     }
 
     @GetMapping("/posts/new")
-    public String getNewPostForm() {
+    public String newPostForm() {
         return "post/post_new_form";
     }
 
     @PostMapping("/posts/add")
-    public String addPost(@RequestParam("title") String title, @RequestParam("content") String content) {
-        postService.createPost(title, content);
+    public String createPost(@RequestParam("title") String title, @RequestParam("content") String content) {
+        postService.save(title, content);
         return "redirect:/posts";
     }
 
-    @GetMapping("/posts/{no}/edit")
-    public String getEditPostForm(@PathVariable("no") Long no, Model model) {
-        Post post = postService.getPost(no);
+    @GetMapping("/posts/{id}/edit")
+    public String editPostForm(@PathVariable("id") Long id, Model model) {
+        Post post = postService.findById(id);
         model.addAttribute("post", post);
         return "post/post_edit_form";
     }
 
-    @PostMapping("/posts/{no}/save")
-    public String updatePost(@PathVariable("no") Long no, @RequestParam("title") String title,
+    @PostMapping("/posts/{id}/save")
+    public String updatePost(@PathVariable("id") Long id, @RequestParam("title") String title,
             @RequestParam("content") String content) {
-        postService.updatePost(no, title, content);
-        return "redirect:/posts/" + no;
+        postService.updatePost(id, title, content);
+        return "redirect:/posts/" + id;
     }
 
-    @GetMapping("/posts/{no}/delete")
-    public String deletePost(@PathVariable("no") Long no) {
-        postService.deletePost(no);
+    @GetMapping("/posts/{id}/delete")
+    public String deletePost(@PathVariable("id") Long id) {
+        postService.deletePost(id);
         return "redirect:/posts";
     }
 }

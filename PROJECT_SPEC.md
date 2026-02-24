@@ -27,9 +27,9 @@
 ### 구현된 기능
 #### 게시글 관리
 - **목록 조회**: `/posts` (Post List Page)
-- **상세 조회**: `/posts/{no}` (Post Detail Page)
-- **수정 폼**: `/posts/{no}/edit` (Post Edit Form Page)
-- **수정 처리**: `/posts/{no}/save` (POST submission, redirects to detail)
+- **상세 조회**: `/posts/{id}` (Post Detail Page)
+- **수정 폼**: `/posts/{id}/edit` (Post Edit Form Page)
+- **수정 처리**: `/posts/{id}/save` (POST submission, redirects to detail)
 - **공개 폼**: `/posts/new` (Creation Form)
 - **등록 처리**: `/posts/add` (POST submission, redirects to list)
 
@@ -45,7 +45,7 @@
 - **프론트엔드**: Bootstrap 5 (CDN)를 사용하여 반응형 UI 디자인 적용
 
 ### 도메인 및 서비스
-- **엔티티**: `Post` (게시글 정보 관리를 위한 POJO)
+- **엔티티**: `Post` (게시글 정보 관리를 위한 POJO - `id`, `title`, `content` 등)
 - **리포지토리**: `PostRepository` (ArrayList 기반 인메모리 저장소)
 - **서비스**: `PostService` (게시글 비즈니스 로직 처리)
 
